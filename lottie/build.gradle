@@ -1,0 +1,49 @@
+apply from: 'gradle-maven-push.gradle'
+apply plugin: 'com.android.library'
+
+android {
+  compileSdkVersion 28
+  resourcePrefix 'lottie_'
+
+  defaultConfig {
+    minSdkVersion 16
+    targetSdkVersion 28
+  }
+  lintOptions {
+    abortOnError true
+    textReport true
+    textOutput 'stdout'
+  }
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_7
+    targetCompatibility JavaVersion.VERSION_1_7
+  }
+  testOptions {
+    unitTests {
+      includeAndroidResources = true
+    }
+  }
+}
+
+dependencies {
+  implementation "androidx.appcompat:appcompat:${androidXVersion}"
+  testImplementation "org.mockito:mockito-core:2.15.0"
+  testImplementation 'junit:junit:4.12'
+  testImplementation "org.robolectric:robolectric:4.0-alpha-3"
+}
+
+task javadoc(type: Javadoc) {
+  source = android.sourceSets.main.java.srcDirs
+  configurations.implementation.setCanBeResolved(true)
+  classpath += project.files(android.getBootClasspath().join(File.pathSeparator)) + configurations.implementation
+  failOnError false
+}
+
+// Re-enable this if releases are uploaded from CI.
+//gradle.taskGraph.whenReady { taskGraph ->
+//  if (taskGraph.allTasks.any { it instanceof Sign }) {
+//    allprojects { ext."signing.keyId" = System.getenv("GRADLE_SIGNING_KEY_ID") }
+//    allprojects { ext."signing.secretKeyRingFile" = "~/.gnupg/secring.gpg" }
+//    allprojects { ext."signing.password" = System.getenv("GRADLE_SIGNING_PASSWORD") }
+//  }
+//}
