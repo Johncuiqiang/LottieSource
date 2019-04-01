@@ -139,6 +139,7 @@ public class ContentGroup implements DrawingContent, PathContent,
     if (hidden) {
       return path;
     }
+    //添加各种Path到当前Path
     for (int i = contents.size() - 1; i >= 0; i--) {
       Content content = contents.get(i);
       if (content instanceof PathContent) {

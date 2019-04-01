@@ -32,6 +32,7 @@ public class ShapeGroup implements ContentModel {
   }
 
   @Override public Content toContent(LottieDrawable drawable, BaseLayer layer) {
+    //toContent实现中返回的还是ContentGroup
     return new ContentGroup(drawable, layer, this);
   }
 

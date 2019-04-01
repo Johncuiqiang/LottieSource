@@ -43,10 +43,12 @@ public class CompositionLayer extends BaseLayer {
       this.timeRemapping = null;
     }
 
+    //hashmap的优化数据结构
     LongSparseArray<BaseLayer> layerMap =
         new LongSparseArray<>(composition.getLayers().size());
 
     BaseLayer mattedLayer = null;
+    //遍历layer图层
     for (int i = layerModels.size() - 1; i >= 0; i--) {
       Layer lm = layerModels.get(i);
       BaseLayer layer = BaseLayer.forModel(lm, lottieDrawable, composition);
@@ -68,6 +70,7 @@ public class CompositionLayer extends BaseLayer {
       }
     }
 
+    //将layer生成各种layerView完成绘制
     for (int i = 0; i < layerMap.size(); i++) {
       long key = layerMap.keyAt(i);
       BaseLayer layerView = layerMap.get(key);
@@ -77,8 +80,10 @@ public class CompositionLayer extends BaseLayer {
       if (layerView == null) {
         continue;
       }
+      //根据数据映射后的parentLayer
       BaseLayer parentLayer = layerMap.get(layerView.getLayerModel().getParentId());
       if (parentLayer != null) {
+        //设置给layerView
         layerView.setParentLayer(parentLayer);
       }
     }

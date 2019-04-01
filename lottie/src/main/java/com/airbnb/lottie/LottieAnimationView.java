@@ -69,7 +69,7 @@ import java.util.Set;
       throw new IllegalStateException("Unable to parse composition", throwable);
     }
   };
-
+  //绘制基本都在LottieDrawable类中，本身是一个drawable
   private final LottieDrawable lottieDrawable = new LottieDrawable();
   private String animationName;
   private @RawRes int animationResId;
@@ -81,6 +81,7 @@ import java.util.Set;
 
   @Nullable private LottieTask<LottieComposition> compositionTask;
   /** Can be null because it is created async */
+  //协议解析后的映射对象
   @Nullable private LottieComposition composition;
 
   public LottieAnimationView(Context context) {
@@ -193,6 +194,9 @@ import java.util.Set;
     }
   }
 
+  /**
+   * 保存当前进步
+   */
   @Override protected Parcelable onSaveInstanceState() {
     Parcelable superState = super.onSaveInstanceState();
     SavedState ss = new SavedState(superState);
@@ -206,6 +210,9 @@ import java.util.Set;
     return ss;
   }
 
+  /**
+   * 恢复当前进度
+   */
   @Override protected void onRestoreInstanceState(Parcelable state) {
     if (!(state instanceof SavedState)) {
       super.onRestoreInstanceState(state);
@@ -340,6 +347,10 @@ import java.util.Set;
     setCompositionTask(LottieCompositionFactory.fromUrl(getContext(), url));
   }
 
+  /**
+   * 只在设置动画json文件的时候，开启了lottie的任务
+   * @param compositionTask 中用线程池解析lottie文件，然后通过回调返回解析后的结果
+   */
   private void setCompositionTask(LottieTask<LottieComposition> compositionTask) {
     clearComposition();
     cancelLoaderTask();
@@ -359,6 +370,7 @@ import java.util.Set;
    * Sets a composition.
    * You can set a default cache strategy if this view was inflated with xml by
    * using {@link R.attr#lottie_cacheStrategy}.
+   * 拿到解析后LottieComposition对象
    */
   public void setComposition(@NonNull LottieComposition composition) {
     if (L.DBG) {
@@ -379,8 +391,9 @@ import java.util.Set;
     // If you set a different composition on the view, the bounds will not update unless
     // the drawable is different than the original.
     setImageDrawable(null);
+    //设置当前绘制后lottieDrawable也就是drawable
     setImageDrawable(lottieDrawable);
-
+    //触发绘制
     requestLayout();
 
     for (LottieOnCompositionLoadedListener lottieOnCompositionLoadedListener : lottieOnCompositionLoadedListeners) {
@@ -395,6 +408,7 @@ import java.util.Set;
 
   /**
    * Returns whether or not any layers in this composition has masks.
+   * 官方文档说Masks和Matte存在时，会多生成bitmap，但是目前没有在json中看到这个协议的结点
    */
   public boolean hasMasks() {
     return lottieDrawable.hasMasks();

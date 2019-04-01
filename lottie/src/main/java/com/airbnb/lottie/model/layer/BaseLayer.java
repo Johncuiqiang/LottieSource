@@ -225,11 +225,13 @@ public abstract class BaseLayer
       L.endSection(drawTraceName);
       return;
     }
+    //将parentlayer添加到parentLayers集合中
     buildParentLayerListIfNeeded();
     L.beginSection("Layer#parentMatrix");
     matrix.reset();
     matrix.set(parentMatrix);
     for (int i = parentLayers.size() - 1; i >= 0; i--) {
+      //前乘矩阵 matrix = matrix * parentLayers.get(i).transform.getMatrix()
       matrix.preConcat(parentLayers.get(i).transform.getMatrix());
     }
     L.endSection("Layer#parentMatrix");
@@ -239,6 +241,7 @@ public abstract class BaseLayer
     if (!hasMatteOnThisLayer() && !hasMasksOnThisLayer()) {
       matrix.preConcat(transform.getMatrix());
       L.beginSection("Layer#drawLayer");
+      //矩阵绘制
       drawLayer(canvas, matrix, alpha);
       L.endSection("Layer#drawLayer");
       recordRenderTime(L.endSection(drawTraceName));
