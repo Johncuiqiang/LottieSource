@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         // 判断是否正在播放
        // mAnimationView.isAnimating();
         mAnimationView.setAnimation(name);
-       // mAnimationView.playAnimation();
+        mAnimationView.playAnimation();
     }
 
     /**

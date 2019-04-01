@@ -3,6 +3,8 @@ package com.airbnb.lottie.model.layer;
 import android.annotation.SuppressLint;
 import android.graphics.*;
 import android.os.Build;
+import android.util.Log;
+
 import androidx.annotation.CallSuper;
 import androidx.annotation.FloatRange;
 import androidx.annotation.NonNull;
@@ -42,17 +44,23 @@ public abstract class BaseLayer
   static BaseLayer forModel(
       Layer layerModel, LottieDrawable drawable, LottieComposition composition) {
     switch (layerModel.getLayerType()) {
+      //形状图层,调用最频繁
       case SHAPE:
         return new ShapeLayer(drawable, layerModel);
+      //预合成图层
       case PRE_COMP:
         return new CompositionLayer(drawable, layerModel,
             composition.getPrecomps(layerModel.getRefId()), composition);
+      //纯色图层
       case SOLID:
         return new SolidLayer(drawable, layerModel);
+      //有些会是zip压缩包中会有图片，在这里解析成bitmap
       case IMAGE:
         return new ImageLayer(drawable, layerModel);
+      //空图层
       case NULL:
         return new NullLayer(drawable, layerModel);
+      //文本图层
       case TEXT:
         return new TextLayer(drawable, layerModel);
       case UNKNOWN:
@@ -64,6 +72,7 @@ public abstract class BaseLayer
   }
 
   private final Path path = new Path();
+  //简单理解画布，因为画布就是对矩阵的封装
   private final Matrix matrix = new Matrix();
   private final Paint contentPaint = new LPaint(Paint.ANTI_ALIAS_FLAG);
   private final Paint dstInPaint = new LPaint(Paint.ANTI_ALIAS_FLAG, PorterDuff.Mode.DST_IN);
