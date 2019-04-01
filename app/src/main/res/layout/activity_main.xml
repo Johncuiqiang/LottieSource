@@ -5,11 +5,9 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_view"
-        android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        />
-
+        android:layout_centerInParent="true" />
 
     <HorizontalScrollView
         android:id="@+id/scorllview"
@@ -27,36 +25,39 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:text="示例1"/>
+                android:text="示例1" />
+
             <Button
                 android:id="@+id/btn_two"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_toRightOf="@+id/btn_one"
-                android:text="示例2"/>
+                android:text="示例2" />
+
             <Button
                 android:id="@+id/btn_three"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/btn_two"
                 android:layout_alignParentBottom="true"
-                android:text="示例3"/>
+                android:layout_toRightOf="@+id/btn_two"
+                android:text="示例3" />
+
             <Button
                 android:id="@+id/btn_four"
-                android:layout_toRightOf="@+id/btn_three"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:text="示例4"/>
+                android:layout_toRightOf="@+id/btn_three"
+                android:text="示例4" />
 
             <Button
                 android:id="@+id/btn_five"
-                android:layout_toRightOf="@+id/btn_four"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:text="示例5"/>
+                android:layout_toRightOf="@+id/btn_four"
+                android:text="示例5" />
 
         </RelativeLayout>
     </HorizontalScrollView>
