@@ -21,6 +21,7 @@ public class ShapeLayer extends BaseLayer {
     super(lottieDrawable, layerModel);
 
     // Naming this __container allows it to be ignored in KeyPath matching.
+    //layerModel.getShapes()进入到layer中，layer的构造方法在layerparse中json解析的时候已经具有数据
     ShapeGroup shapeGroup = new ShapeGroup("__container", layerModel.getShapes(), false);
     contentGroup = new ContentGroup(lottieDrawable, this, shapeGroup);
     contentGroup.setContents(Collections.<Content>emptyList(), Collections.<Content>emptyList());

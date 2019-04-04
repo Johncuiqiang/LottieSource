@@ -279,8 +279,9 @@ public abstract class BaseLayer
       if (hasMasksOnThisLayer()) {
         applyMasks(canvas, matrix);
       }
-
+      Log.d("1111","hasMatteOnThisLayer "+hasMatteOnThisLayer());
       if (hasMatteOnThisLayer()) {
+
         L.beginSection("Layer#drawMatte");
         L.beginSection("Layer#saveLayer");
         saveLayerCompat(canvas, rect, mattePaint, false);

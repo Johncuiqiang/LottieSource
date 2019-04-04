@@ -390,6 +390,7 @@ import java.util.Set;
 
     // If you set a different composition on the view, the bounds will not update unless
     // the drawable is different than the original.
+    // 源码中，if (mDrawable != drawable) 才会执行，所以不设置null，setImageDrawable是无法执行的
     setImageDrawable(null);
     //设置当前绘制后lottieDrawable也就是drawable
     setImageDrawable(lottieDrawable);

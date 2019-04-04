@@ -209,9 +209,12 @@ public class LottieDrawable extends Drawable implements Drawable.Callback, Anima
     isDirty = false;
     clearComposition();
     this.composition = composition;
+    //开始构建layer，完成了layer到layerview的转变
     buildCompositionLayer();
     animator.setComposition(composition);
+    //确定进度progress
     setProgress(animator.getAnimatedFraction());
+    //scale适配
     setScale(scale);
     updateBounds();
 

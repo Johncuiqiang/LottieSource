@@ -3,6 +3,8 @@ package com.airbnb.lottie.model.layer;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.RectF;
+import android.util.Log;
+
 import androidx.annotation.FloatRange;
 import androidx.annotation.Nullable;
 import androidx.collection.LongSparseArray;
@@ -51,11 +53,14 @@ public class CompositionLayer extends BaseLayer {
     //遍历layer图层
     for (int i = layerModels.size() - 1; i >= 0; i--) {
       Layer lm = layerModels.get(i);
+      //返回，不同的layer类型，获取layer信息，准备各种绘制数据如path
       BaseLayer layer = BaseLayer.forModel(lm, lottieDrawable, composition);
       if (layer == null) {
         continue;
       }
       layerMap.put(layer.getLayerModel().getId(), layer);
+      //mattedLayer暂时还没有走到这个方法或者在json中发现这个结点，
+      //具体matte和mask代表什么还需要验证
       if (mattedLayer != null) {
         mattedLayer.setMatteLayer(layer);
         mattedLayer = null;
@@ -69,6 +74,8 @@ public class CompositionLayer extends BaseLayer {
         }
       }
     }
+
+
 
     //将layer生成各种layerView完成绘制
     for (int i = 0; i < layerMap.size(); i++) {
