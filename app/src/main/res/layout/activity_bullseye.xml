@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.lottiesdemo.lottie.InterceptingFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        android:layout_width="256dp"
+        android:layout_height="256dp"
+        app:lottie_url="https://raw.githubusercontent.com/airbnb/lottie-android/master/LottieSample/src/main/res/raw/bullseye.json"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        android:layout_gravity="center"/>
+
+    <com.example.lottiesdemo.lottie.BackgroundColorView
+        android:id="@+id/target_view"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:background="#00ddff"
+        android:layout_gravity="center"/>
+
+</com.example.lottiesdemo.lottie.InterceptingFrameLayout>

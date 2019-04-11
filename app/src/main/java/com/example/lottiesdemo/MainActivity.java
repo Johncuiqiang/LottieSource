@@ -1,13 +1,12 @@
 package com.example.lottiesdemo;
 
 import android.animation.ValueAnimator;
-import android.graphics.Matrix;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-
 import com.airbnb.lottie.LottieAnimationView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,6 +17,10 @@ public class MainActivity extends AppCompatActivity {
     private Button mBtnThree;
     private Button mBtnFour;
     private Button mBtnFive;
+    private Button mBtnSix;
+    private Button mBtnSeven;
+    private Button mBtnEight;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,35 +37,64 @@ public class MainActivity extends AppCompatActivity {
         mBtnThree = findViewById(R.id.btn_three);
         mBtnFour = findViewById(R.id.btn_four);
         mBtnFive = findViewById(R.id.btn_five);
+        mBtnSix = findViewById(R.id.btn_six);
+        mBtnSeven = findViewById(R.id.btn_seven);
+        mBtnEight = findViewById(R.id.btn_eight);
     }
 
     private void initData() {
         mBtnOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                play("lottiefiles.com - ATM.json");
-              //  playValueAnimator("lottiefiles.com - ATM.json");
+                Intent intent = new Intent(MainActivity.this,DynamicActivity.class);
+                startActivity(intent);
             }
         });
         mBtnTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                play("MotionCorpse-Jrcanest.json");
+                Intent intent = new Intent(MainActivity.this,PinyinActivity.class);
+                startActivity(intent);
+
             }
         });
         mBtnThree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                play("lottiefiles.com - Im Thirsty.json");
+                Intent intent = new Intent(MainActivity.this,BullseyeActivity.class);
+                startActivity(intent);
+
             }
         });
         mBtnFour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                play("PinJump.json");
+                play("lottiefiles.com - ATM.json");
+                //  playValueAnimator("lottiefiles.com - ATM.json");
+
+
             }
         });
         mBtnFive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                play("MotionCorpse-Jrcanest.json");
+
+            }
+        });
+        mBtnSix.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                play("lottiefiles.com - Im Thirsty.json");
+            }
+        });
+        mBtnSeven.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                play("PinJump.json");
+            }
+        });
+        mBtnEight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 play("Hosts.json");
@@ -71,6 +103,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void play(String name){
+        //放大缩小，回自己检测屏幕边界，不会超出屏幕
+        //mAnimationView.setScale(3);
         // 取消播放
         mAnimationView.cancelAnimation();
         // 是否循环播放

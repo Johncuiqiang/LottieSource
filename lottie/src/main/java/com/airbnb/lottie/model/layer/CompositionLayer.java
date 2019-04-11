@@ -59,8 +59,7 @@ public class CompositionLayer extends BaseLayer {
         continue;
       }
       layerMap.put(layer.getLayerModel().getId(), layer);
-      //mattedLayer暂时还没有走到这个方法或者在json中发现这个结点，
-      //具体matte和mask代表什么还需要验证
+      //遮罩和蒙版
       if (mattedLayer != null) {
         mattedLayer.setMatteLayer(layer);
         mattedLayer = null;
