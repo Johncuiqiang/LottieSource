@@ -64,6 +64,7 @@ public class DynamicActivity extends AppCompatActivity {
     }
 
     private void setColor(){
+        //Shirt,Group 5,Fill 1都是layer的名称
         KeyPath shirt = new KeyPath("Shirt", "Group 5", "Fill 1");
         KeyPath leftArm = new KeyPath("LeftArmWave", "LeftArm", "Group 6", "Fill 1");
         KeyPath rightArm = new KeyPath("RightArm", "Group 6", "Fill 1");

@@ -32,6 +32,7 @@ public class PinyinActivity extends AppCompatActivity {
         public void onGlobalLayout() {
             mScrollView.fullScroll(View.FOCUS_DOWN);
         }
+
     };
 
     @Override
@@ -45,6 +46,7 @@ public class PinyinActivity extends AppCompatActivity {
     private void initView() {
         mScrollView = findViewById(R.id.scroll_view);
         mFontView = findViewById(R.id.font_view);
+        //解析onKeyUp中输入的字符，然后创建新的lottieView播放相应的动画
         mFontView.getViewTreeObserver().addOnGlobalLayoutListener(layoutListener);
     }
 
